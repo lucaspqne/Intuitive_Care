@@ -1,6 +1,7 @@
 import requests 
 import os 
-from zipfile import ZipFile 
+from zipfile import ZipFile
+from tkinter import filedialog
 
 
 def baixar_arquivos(urls, diretorio_destino):
@@ -19,13 +20,14 @@ urls = [
     "https://www.gov.br/ans/pt-br/arquivos/assuntos/consumidor/o-que-seu-plano-deve-cobrir/Anexo_III_DC_2021_RN_465.2021.v2.pdf",
     "https://www.gov.br/ans/pt-br/arquivos/assuntos/consumidor/o-que-seu-plano-deve-cobrir/Anexo_IV_PROUT_2021_RN_465.2021.v2.pdf"
 ]
-diretorio_destino = input("Digite o diretório que deseja salvar os arquivos e posteriormente compacta-los: \n")
-while not os.path.exists(diretorio_destino): 
-    opcao = input("O diretório não existe, o que deseja fazer?\n1 - Criar este diretório.\n2 - Digitar novamente o diretório. ")
-    if int(opcao)==1:
-        os.makedirs(diretorio_destino)
-    else:
-        diretorio_destino = input("Digite o diretório que deseja salvar os arquivos e posteriormente compacta-los: \n")
+diretorio_destino = filedialog.askdirectory()
+# Caixa de dialogo exclui a possibilidade de erro de diretório.
+#while not os.path.exists(diretorio_destino): 
+#    opcao = input("O diretório não existe, o que deseja fazer?\n1 - Criar este diretório.\n2 - Digitar novamente o diretório. ")
+#    if int(opcao)==1:
+#        os.makedirs(diretorio_destino)
+#    else:
+#        diretorio_destino
        
 
 def compactar_arquivos(diretorio_origem, nome_arquivo):      
